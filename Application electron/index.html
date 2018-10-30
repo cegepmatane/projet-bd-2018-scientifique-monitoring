@@ -29,7 +29,19 @@
         center:new google.maps.LatLng(49.2369088,-66.5059579),
         zoom:5,
     };
+    
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var positionMarker = {lat: 49.2622455, lng: -67.1082227}
+    var marker = new google.maps.Marker({
+      position: positionMarker,
+      map: map,
+      title: "Test de marker"
+    });
+
+    marker.addListener('click', function(){    	
+      window.location.href = "html_data/bouee.html"
+    });
+
     }
     </script>
     
