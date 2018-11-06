@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <title>Application Monitoring Electron</title>
@@ -9,6 +8,25 @@
   <script src="lib/Chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script> 
   <script src="connectionNode.js"></script>
+
+  <script>
+  function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+
+   
+  </script>
   
 </head>
 
@@ -20,10 +38,19 @@
   </div>
 
   <div id="retour-accueil" style=""><a href="../index.html"><img src="img/retour.png"></a></div>
-  
+
+  <div><h2>Information sur la bouée <span id="bouee"></span></h2></div>
   
   <div id="graphique-tarte" style="float: left; width: 300px">
   <canvas id="graphique-pie" width="300px" height="300px"></canvas>
+
+  <script>
+   var bouee = $_GET('bouee');
+    //console.log("info de la bouee" + bouee);
+    var NomDeBouee = document.getElementById("bouee");
+    //console.log("nom de la bouee: " + NomDeBouee);
+  NomDeBouee.innerHTML = bouee;
+  </script>
 
   
 

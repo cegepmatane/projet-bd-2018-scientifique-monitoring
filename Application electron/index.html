@@ -17,13 +17,17 @@
     <div class="header-right">
     </div>
   </div>
-  <a href="html_data/bouee.html">Test pour la page bouée</a>
 
   <div id="resultatNode"></div>
 
   <div id="googleMap" style="width:100%;height:600px;"></div>
 
   <script>
+    var connectionNode = new ConnectionNode();
+    connectionNode.requetePositionBouee();
+    var positions = connectionNode.retournerPosition();
+    console.log("positions: " + positions);
+
     function myMap() {
     var mapProp= {
         center:new google.maps.LatLng(49.2369088,-66.5059579),
@@ -39,7 +43,7 @@
     });
 
     marker.addListener('click', function(){    	
-      window.location.href = "html_data/bouee.html"
+      window.location.href = "html_data/bouee.html?bouee=test"
     });
 
     }
