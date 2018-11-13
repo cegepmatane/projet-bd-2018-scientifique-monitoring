@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  
   <title>Application Monitoring Electron</title>
   <link rel="stylesheet" type="text/css" href="html_data/style/style-index.css">
   <link rel="stylesheet" type="text/css" href="html_data/style/header.css">
+  <script src="translate.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -13,7 +15,7 @@
     <script type="text/javascript" src="html_data/connectionNode.js"></script>
 
   <div class="header">
-    <a href="#default" class="logo"><span><h3>Les bouées</h3></span></a>
+    <a href="#default" class="logo"><span><h3 id="les-bouees">Les bouées</h3></span></a>
     <div class="header-right">
     </div>
   </div>
@@ -25,8 +27,17 @@
   <script>
     var connectionNode = new ConnectionNode();
     connectionNode.requetePositionBouee();
-    var positions = connectionNode.retournerPosition();
+    var traducteur = new Traducteur();
+    window.onload = traducteur.traduire(traducteur.retournerLangue());
+    var positions;
     console.log("positions: " + positions);
+   /* while(positions == undefined)
+    {
+      positions = connectionNode.retournerPosition();
+    }
+    */
+    console.log("positions: " + positions);
+
 
     function myMap() {
     var mapProp= {

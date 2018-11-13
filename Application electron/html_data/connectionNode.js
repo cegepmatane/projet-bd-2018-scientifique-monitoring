@@ -20,9 +20,13 @@ this.ConnectionNode = function ()
    {
        connection.emit('envoyer-position');
    };
+
  function recevoirPositionBouee(positions)
  {
+     console.log("ca rentre dans la fonction recevoir position");
     positionBouee = positions;
+    console.log("socket des position: " + positions)
+    console.log("les donnees sont recu: " +positionBouee);
  }
 
    this.requeteDonneeBouee = function()
