@@ -5,11 +5,13 @@ var language;
 function initialiser()
 {
 var locale;
+
 if (window.navigator.languages) {
     locale = window.navigator.languages[0];
 } else {
     locale = window.navigator.userLanguage || window.navigator.language;
 }
+
     console.log("Locale: " + locale);
     locale = locale.split("-");
     language = locale[0];
