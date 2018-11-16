@@ -5,8 +5,12 @@
   <meta charset="UTF-8">
   
   <title>Application Monitoring Electron</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="html_data/materialize/css/materialize.min.css"  media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="html_data/style/style-index.css">
-  <link rel="stylesheet" type="text/css" href="html_data/style/header.css">
+  <!--<link rel="stylesheet" type="text/css" href="html_data/style/header.css">-->
+ 
+  
   <script src="translate.js" charset="utf-8"></script>
 </head>
 
@@ -14,11 +18,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script> 
     <script type="text/javascript" src="html_data/connectionNode.js"></script>
 
-  <div class="header">
+ <!--  <div class="header">
     <a href="#default" class="logo"><span><h3 id="les-bouees">Les bouées</h3></span></a>
-    <div class="header-right">
+
+    <div class="header-right"> -->
+        <script> document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems, options);
+          });
+          </script>
+        <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li><a href="#!">three</a></li>
+      </ul>
+      <nav>
+        <div class="nav-wrapper orange darken-2">
+        <a href="#" class="brand-logo" id="les-bouees">Logo</a>
+        <ul class="right hide-on-med-and-down">  
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Langue<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
     </div>
-  </div>
+  </nav>
+
+ 
+              
+                
+    <!-- </div>
+  </div> -->
+  
 
   <div id="resultatNode"></div>
 
@@ -61,6 +91,7 @@
     </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xbTjFamHWOId73d2DGbsPUoWuNI-1NY&callback=myMap"></script>
+    <script type="text/javascript" src="html_data/materialize/js/materialize.min.js"></script>
 
   
 
