@@ -38,7 +38,7 @@
           <a href="#" class="brand-logo" id="les-bouees">Logo</a>
           <ul class="right hide-on-med-and-down">  
             <li>
-              <a class="dropdown-trigger btn" href="#" data-target="dropdown1">Langue
+              <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
                 <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
@@ -62,7 +62,7 @@
   <script>
     var connectionNode = new ConnectionNode();
     connectionNode.requetePositionBouee();
-    var traducteur = new Traducteur();
+    var traducteur = new Traducteur(false);
     window.onload = traducteur.traduire(traducteur.retournerLangue());
     var positions;
     console.log("positions: " + positions);

@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Application Monitoring Electron</title>
-  <link rel="stylesheet" type="text/css" href="style/header.css">
   <script src="lib/moment.js"></script>
   <script src="lib/Chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script> 
   <script src="connectionNode.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  <script src="../translate.js" charset="utf-8"></script>
 
   <script>
   function $_GET(param) {
@@ -25,25 +29,50 @@
 	return vars;
 }
 
+   var traducteur = new Traducteur(true);
+   window.onload = traducteur.traduire(traducteur.retournerLangue());
    
   </script>
+  <style>
+  html
+  {
+    overflow: hidden;
+  }
+  .graphiques
+  {
+    float: left;
+  }
+
   
+  </style>
+
 </head>
 
 <body>
 
-  <div class="header">
-    <a href="#default" class="logo"><span><h3>Les bouées</h3></span></a>
-    <div class="header-right"></div>
-  </div>
+    <nav>
+        <div class="nav-wrapper orange darken-2">
+          <a href="#" class="brand-logo" id="les-bouees">Logo</a>
+          <ul class="right hide-on-med-and-down">  
+            <li>
+              <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
+                <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          </ul>
+        </div>
+  </nav>
+
+  <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>
+      <li><a href="#!" onclick="traducteur.traduire('en')">English</a></li>
+      <li><a href="#!" onclick="traducteur.traduire('es')">Español</a></li>
+      </ul>
 
   <div id="retour-accueil" style=""><a href="../index.html"><img src="img/retour.png"></a></div>
 
-  <div><h2>Information sur la bouée <span id="bouee"></span></h2></div>
+  <div><h2 ><span id="info-bouee">Information sur la bouée</span><span id="bouee"></span></h2></div>
   
-  <div id="graphique-tarte" style="float: left; width: 300px">
-  <canvas id="graphique-pie" width="300px" height="300px"></canvas>
-
   <script>
    var bouee = $_GET('bouee');
     //console.log("info de la bouee" + bouee);
@@ -51,116 +80,36 @@
     //console.log("nom de la bouee: " + NomDeBouee);
   NomDeBouee.innerHTML = bouee;
   </script>
-
   
-
-  <script>
-  
-    
-    new Chart(document.getElementById("graphique-pie"), {
-    type: 'pie',
-    data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-      datasets: [{
-        label: "Population (millions)",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: [10000,1,1,1,1]
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Where are we blessing the rain?'
-      },
-      responsive: true,
-      maintainAspectRatio: false
-    }
-});
-    </script>
-    </div>
-    <div id="graphique-ligne" style="float: left; width: 300px">
-    <canvas id="graphique-line" width="300px" height="300px"></canvas>
-    <script>
    
-    var myChart = new Chart(document.getElementById('graphique-line'), {
-      type: 'line',
-      data: {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        datasets: [{
-          label: 'apples',
-          data: [12, 19, 3, 17, 6, 3, 7],
-          backgroundColor: "rgba(153,255,51,0.4)"
-        }, {
-          label: 'oranges',
-          data: [2, 29, 5, 5, 2, 3, 10],
-          backgroundColor: "rgba(255,153,0,0.4)"
-        }]
-      }
-    });
-  </script>
-  </div>
-  <div id="graphique-barre" style="float: left; width: 300px">
-      <canvas id="graphique-bar" width="300px" height="300px"></canvas>
-      <script>
-var myChart = new Chart(document.getElementById("graphique-bar"), {
-  type: 'bar',
-  data: {
-    labels: ["2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2015-06", "2015-07", "2015-08", "2015-09", "2015-10", "2015-11", "2015-12"],
-    datasets: [{
-      label: '# of Tomatoes',
-      data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: false,
-    scales: {
-      xAxes: [{
-        ticks: {
-          maxRotation: 90,
-          minRotation: 80
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
-      </script>
+   
+  <div id="graphique-barre-temperature" class="graphiques" style="width: 300px">
+      <canvas id="graphique-bar-temp" width="300px" height="300px"></canvas>
   </div>
 
+  <div id="legende-vents" class="graphiques" style="
+    border-radius: 25px;
+    border: 2px solid #f57c00;
+    padding: 20px; 
+    width: 275px;
+    height: 275px; 
+  ">
+  <p> allo </p>
 
+</div>
+
+
+  <div id="graphique-barre-vague" class="graphiques" style="width: 300px">
+      <canvas id="graphique-bar-vague" width="300px" height="375"></canvas>
+  </div>
+
+  <script> 
+      // document.addEventListener('DOMContentLoaded', function() {
+           var elems = document.querySelectorAll('.dropdown-trigger');
+           console.log("script de dropdown");
+           var instances = M.Dropdown.init(elems);
+        // });
+         </script>
 </body>
 
 </html>
