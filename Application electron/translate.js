@@ -31,7 +31,7 @@ this.traduire = function(language, callback){
     script.type = "text/javascript";
   
         script.onload = function(){
-            callback();
+            //callback();
         }
     
 
