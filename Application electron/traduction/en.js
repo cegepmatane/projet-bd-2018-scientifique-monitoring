@@ -89,5 +89,10 @@ if(document.getElementById("graphique-barre-vague"))
             }]
           }
         }
-      });
+      }); 
+}
+if(document.getElementById("legende-vents"))
+{
+  var inner = "<p> Wind direction: <span id='direction-vent'></span></p><p> Winds speed: <span id='vitesse-vent'></span></span></p><p> Gust: <span id='rafales'></span></p>";
+  document.getElementById("legende-vents").innerHTML = inner;
 }

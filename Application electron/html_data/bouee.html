@@ -38,9 +38,14 @@
   {
     overflow: hidden;
   }
+  .graphiques :first-child
+  {
+    margin-right: 50px;
+  }
   .graphiques
   {
     float: left;
+
   }
 
   
@@ -87,21 +92,22 @@
       <canvas id="graphique-bar-temp" width="300px" height="300px"></canvas>
   </div>
 
-  <div id="legende-vents" class="graphiques" style="
-    border-radius: 25px;
-    border: 2px solid #f57c00;
-    padding: 20px; 
-    width: 275px;
-    height: 275px; 
-  ">
-  <p> allo </p>
-
-</div>
+  
 
 
   <div id="graphique-barre-vague" class="graphiques" style="width: 300px">
       <canvas id="graphique-bar-vague" width="300px" height="375"></canvas>
   </div>
+
+  <div id="legende-vents" class="graphiques" style="
+    border-radius: 25px;
+    border: 2px solid #f57c00;
+    padding: 20px; 
+    width: 275px;
+    height: auto; 
+  ">
+  
+</div>
 
   <script> 
       // document.addEventListener('DOMContentLoaded', function() {
@@ -110,6 +116,7 @@
            var instances = M.Dropdown.init(elems);
         // });
          </script>
+
 </body>
 
 </html>
