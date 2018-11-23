@@ -60,8 +60,7 @@
   <div id="googleMap" style="width:100%;height:600px;"></div>
 
   <script>
-    var connectionNode = new ConnectionNode();
-    connectionNode.requetePositionBouee();
+   
     var traducteur = new Traducteur(false);
     window.onload = traducteur.traduire(traducteur.retournerLangue());
     var positions;
@@ -81,7 +80,16 @@
     };
     
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    var positionMarker = {lat: 49.2622455, lng: -67.1082227}
+    
+    
+  
+
+    }
+    function afficherMarqueur(positionBouee)
+    {
+      for(positionarray in positionBouee){
+        console.log("position bouee: " + positionarray.lat);
+      /*var positionMarker = {lat: 49.2622455, lng: -67.1082227}
     var marker = new google.maps.Marker({
       position: positionMarker,
       map: map,
@@ -91,8 +99,12 @@
     marker.addListener('click', function(){    	
       window.location.href = "html_data/bouee.html?bouee=test"
     });
+    */
+  }
 
-    }
+  }
+  var connectionNode = new ConnectionNode();
+    connectionNode.requetePositionBouee();
     </script>
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>

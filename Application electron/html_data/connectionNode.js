@@ -25,8 +25,9 @@ this.ConnectionNode = function ()
  {
      console.log("ca rentre dans la fonction recevoir position");
     positionBouee = positions;
-    console.log("socket des position: " + positions)
-    console.log("les donnees sont recu: " +positionBouee);
+    console.log("socket des position: " + positions);
+    console.log("les position sont recu: " +positionBouee);
+    afficherMarqueur(positionBouee);
  }
 
    this.requeteDonneeBouee = function()
