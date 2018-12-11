@@ -3,125 +3,117 @@
 
 <head>
   <meta charset="UTF-8">
-  
+
   <title>Application Monitoring Electron</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="html_data/materialize/css/materialize.min.css"  media="screen,projection"/>
- <!-- <link rel="stylesheet" type="text/css" href="html_data/style/style-index.css">-->
- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="html_data/materialize/css/materialize.min.css" media="screen,projection" />
+  <!-- <link rel="stylesheet" type="text/css" href="html_data/style/style-index.css">-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="html_data/materialize/js/materialize.min.js"></script>
   <!--<link rel="stylesheet" type="text/css" href="html_data/style/header.css">-->
 
- 
- 
-  
+
+
+
   <script src="translate.js" charset="utf-8"></script>
 </head>
 
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script> 
-    <script type="text/javascript" src="html_data/connectionNode.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+  <script type="text/javascript" src="html_data/connectionNode.js"></script>
 
- <!--  <div class="header">
+  <!--  <div class="header">
     <a href="#default" class="logo"><span><h3 id="les-bouees">Les bouées</h3></span></a>
 
     <div class="header-right"> -->
-
-        
-               
-      
-    
-
-
-      <nav>
-        <div class="nav-wrapper orange darken-2">
-          <a href="#" class="brand-logo" id="les-bouees">Logo</a>
-          <ul class="right hide-on-med-and-down">  
-            <li>
-              <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
-                <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          </ul>
-        </div>
+  <nav>
+    <div class="nav-wrapper orange darken-2">
+      <a href="#" class="brand-logo" id="les-bouees">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
-      <!-- Dropdown Structure -->
-      
+  <!-- Dropdown Structure -->
 
-  
-                
-    <!-- </div>
+
+
+
+  <!-- </div>
   </div> -->
-  
+
 
   <div id="resultatNode"></div>
 
   <div id="googleMap" style="width:100%;height:600px;"></div>
 
   <script>
-   
+
     var traducteur = new Traducteur(false);
     window.onload = traducteur.traduire(traducteur.retournerLangue());
     var positions;
     console.log("positions: " + positions);
-   /* while(positions == undefined)
-    {
-      positions = connectionNode.retournerPosition();
-    }
-    */
+    /* while(positions == undefined)
+     {
+       positions = connectionNode.retournerPosition();
+     }
+     */
     console.log("positions: " + positions);
 
-
+     var map;
     function myMap() {
-    var mapProp= {
-        center:new google.maps.LatLng(49.2369088,-66.5059579),
-        zoom:5,
-    };
-    
-    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    
-    
-  
+      var mapProp = {
+        center: new google.maps.LatLng(49.2369088, -66.5059579),
+        zoom: 5,
+      };
+
+      map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+
+
 
     }
-    function afficherMarqueur(positionBouee)
-    {
-      for(positionarray in positionBouee){
-        console.log("position bouee: " + positionarray.lat);
-      /*var positionMarker = {lat: 49.2622455, lng: -67.1082227}
-    var marker = new google.maps.Marker({
-      position: positionMarker,
-      map: map,
-      title: "Test de marker"
-    });
+    function afficherMarqueur(positionBouee) {
+      for (positionarray in positionBouee) {
+        //console.log("position bouee: " + positionBouee[positionarray].lat);
+        var positionMarker = {lat: positionBouee[positionarray].lat, lng: positionBouee[positionarray].long}
+      var marker = new google.maps.Marker({
+        position: positionMarker,
+        map: map,
+        title: "Test de marker"
+      });
+  
+        marker.addListener('click', function(){    	
+        window.location.href = "html_data/bouee.html?bouee=test"
+      });
+      
+      }
 
-    marker.addListener('click', function(){    	
-      window.location.href = "html_data/bouee.html?bouee=test"
-    });
-    */
-  }
-
-  }
-  var connectionNode = new ConnectionNode();
+    }
+    var connectionNode = new ConnectionNode();
     connectionNode.requetePositionBouee();
-    </script>
-    <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>
-        <li><a href="#!" onclick="traducteur.traduire('en')">English</a></li>
-        <li><a href="#!" onclick="traducteur.traduire('es')">Español</a></li>
-        </ul>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xbTjFamHWOId73d2DGbsPUoWuNI-1NY&callback=myMap"></script>
-    
+  </script>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>
+    <li><a href="#!" onclick="traducteur.traduire('en')">English</a></li>
+    <li><a href="#!" onclick="traducteur.traduire('es')">Español</a></li>
+  </ul>
 
-    <script> 
-       // document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            console.log("script de dropdown");
-            var instances = M.Dropdown.init(elems);
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xbTjFamHWOId73d2DGbsPUoWuNI-1NY&callback=myMap"></script>
+
+
+  <script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    console.log("script de dropdown");
+    var instances = M.Dropdown.init(elems);
          // });
-          </script>
+  </script>
 
 </body>
 

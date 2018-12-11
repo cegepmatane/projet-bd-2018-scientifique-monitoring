@@ -1,98 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Application Monitoring Electron</title>
   <script src="lib/moment.js"></script>
   <script src="lib/Chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
   <script src="connectionNode.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   <script src="../translate.js" charset="utf-8"></script>
 
   <script>
-  function $_GET(param) {
-	var vars = {};
-	window.location.href.replace( location.hash, '' ).replace( 
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-		function( m, key, value ) { // callback
-			vars[key] = value !== undefined ? value : '';
-		}
-	);
+    function $_GET(param) {
+      var vars = {};
+      window.location.href.replace(location.hash, '').replace(
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function (m, key, value) { // callback
+          vars[key] = value !== undefined ? value : '';
+        }
+      );
 
-	if ( param ) {
-		return vars[param] ? vars[param] : null;	
-	}
-	return vars;
-}
+      if (param) {
+        return vars[param] ? vars[param] : null;
+      }
+      return vars;
+    }
 
-   var traducteur = new Traducteur(true);
-   window.onload = traducteur.traduire(traducteur.retournerLangue());
-   
+    var traducteur = new Traducteur(true);
+    window.onload = traducteur.traduire(traducteur.retournerLangue());
+
   </script>
   <style>
-  html
-  {
-    overflow: hidden;
-  }
-  .graphiques
-  {
-    float: left;
+    html {
+      overflow: hidden;
+    }
+    #retour-accueil{
+      margin-top: 10px; 
+    }
+    
+    #informations{
+      width: 75%;
+      margin: 0 auto;
 
-  }
+    }
+    .graphiques {
+      float: left;
+      margin-right: 40px; 
 
-  
+    }
   </style>
 
 </head>
 
 <body>
 
-    <nav>
-        <div class="nav-wrapper orange darken-2">
-          <a href="#" class="brand-logo" id="les-bouees">Logo</a>
-          <ul class="right hide-on-med-and-down">  
-            <li>
-              <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
-                <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          </ul>
-        </div>
+  <nav>
+    <div class="nav-wrapper orange darken-2">
+      <a href="#" class="brand-logo" id="les-bouees">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a class="dropdown-trigger btn" href="#" data-target="dropdown1"><i class="material-icons">public</i>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>
-      <li><a href="#!" onclick="traducteur.traduire('en')">English</a></li>
-      <li><a href="#!" onclick="traducteur.traduire('es')">Español</a></li>
-      </ul>
+    <li><a href="#!" onclick="traducteur.traduire('fr')">Français</a></li>
+    <li><a href="#!" onclick="traducteur.traduire('en')">English</a></li>
+    <li><a href="#!" onclick="traducteur.traduire('es')">Español</a></li>
+  </ul>
 
   <div id="retour-accueil" style=""><a href="../index.html"><img src="img/retour.png"></a></div>
 
-  <div><h2 ><span id="info-bouee">Information sur la bouée</span><span id="bouee"></span></h2></div>
-  
+  <div>
+    <h2><span id="info-bouee">Information sur la bouée</span><span id="bouee"></span></h2>
+  </div>
+
   <script>
-   var bouee = $_GET('bouee');
+    var bouee = $_GET('bouee');
     //console.log("info de la bouee" + bouee);
     var NomDeBouee = document.getElementById("bouee");
     //console.log("nom de la bouee: " + NomDeBouee);
-  NomDeBouee.innerHTML = bouee;
+    NomDeBouee.innerHTML = bouee;
   </script>
-  
-   
-   
+
+<div id="conteneur-informations">
+<div id="informations" >
+
   <div id="graphique-barre-temperature" class="graphiques" style="width: 300px">
-      <canvas id="graphique-bar-temp" width="300px" height="300px"></canvas>
-  </div>
-
-  
-
-
-  <div id="graphique-barre-vague" class="graphiques" style="width: 300px">
-      <canvas id="graphique-bar-vague" width="300px" height="375"></canvas>
+    <canvas id="graphique-bar-temp" width="300px" height="300px"></canvas>
   </div>
 
   <div id="legende-vents" class="graphiques" style="
@@ -100,18 +103,28 @@
     border: 2px solid #f57c00;
     padding: 20px; 
     width: 275px;
-    height: auto; 
+    height: auto;
+    margin-top: 50px; 
   ">
-  
 </div>
 
-  <script> 
-      // document.addEventListener('DOMContentLoaded', function() {
-           var elems = document.querySelectorAll('.dropdown-trigger');
-           console.log("script de dropdown");
-           var instances = M.Dropdown.init(elems);
+
+  <div id="graphique-barre-vague" class="graphiques" style="width: 300px">
+    <canvas id="graphique-bar-vague" width="300px" height="375"></canvas>
+  </div>
+
+  
+</div>
+</div>
+
+
+  <script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    console.log("script de dropdown");
+    var instances = M.Dropdown.init(elems);
         // });
-         </script>
+  </script>
 
 </body>
 
