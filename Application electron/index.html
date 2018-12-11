@@ -79,9 +79,11 @@
 
     }
     function afficherMarqueur(positionBouee) {
+      console.log(positionBouee)
       for (positionarray in positionBouee) {
+        console.log("cycle de la boucle for pour marqueur");
         //console.log("position bouee: " + positionBouee[positionarray].lat);
-        var positionMarker = {lat: positionBouee[positionarray].lat, lng: positionBouee[positionarray].long}
+        var positionMarker = {lat: positionBouee[positionarray].longitude, lng: positionBouee[positionarray].latitude}
       var marker = new google.maps.Marker({
         position: positionMarker,
         map: map,
@@ -89,7 +91,7 @@
       });
   
         marker.addListener('click', function(){    	
-        window.location.href = "html_data/bouee.html?bouee=test"
+        window.location.href = "html_data/bouee.html?bouee=" + positionBouee[positionarray]._id;
       });
       
       }
