@@ -22,7 +22,7 @@ if(document.getElementById("graphique-barre-temperature"))
           labels: ["Air", "Water"],
           datasets: [{
             label: 'Temperature in °C',
-            data: [12, 19],
+            data: [bouee.temperatureAir, bouee.temperatureEau],
             backgroundColor: [
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)'
@@ -61,7 +61,7 @@ if(document.getElementById("graphique-barre-vague"))
           labels: ["Wave height", "Average height"],
           datasets: [{
             label: 'Wave height in Meter',
-            data: [3.6, 2.3],
+            data: [bouee.hauteurMaximum, bouee.vagueMoyenne],
             backgroundColor: [
             'rgba(62, 219, 0, 1)',
             'rgba(255, 159, 64, 1)'
@@ -93,6 +93,12 @@ if(document.getElementById("graphique-barre-vague"))
 }
 if(document.getElementById("legende-vents"))
 {
-  var inner = "<p> Wind direction: <span id='direction-vent'></span></p><p> Winds speed: <span id='vitesse-vent'></span></span></p><p> Gust: <span id='rafales'></span></p>";
+  var inner = "<p> Wind direction: <span id='direction-vent'>" + bouee.directionVent +"</span></p><p> Winds speed: <span id='vitesse-vent'>"+bouee.kilometrageVent+" km</span></span></p><p> Gust: <span id='rafales'>"+bouee.rafales+"</span></p>";
   document.getElementById("legende-vents").innerHTML = inner;
+}
+
+if(document.getElementById("bouee"))
+{
+  var innerBouee = "longitude: " + bouee.longitude + " latitude: " + bouee.latitude;
+  document.getElementById("bouee").innerHTML = innerBouee;
 }

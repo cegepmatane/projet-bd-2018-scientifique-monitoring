@@ -5,7 +5,7 @@ this.ConnectionNode = function () {
     function init() {
         connection = io.connect('http://vps202433.vps.ovh.ca:8080');
         connection.on('salutation', saluer);
-        connection.on('donneeBouee', recevoirDonneeBouee);
+        connection.on('donnees-bouee', recevoirDonneeBouee);
         connection.on('donnees-marqueurs-bouee', recevoirPositionBouee);
     }
 
@@ -25,18 +25,21 @@ this.ConnectionNode = function () {
         afficherMarqueur(positionBouee);
     }
 
-    this.requeteDonneeBouee = function () {
-        connection.emit('envoyer-donnee');
+    this.requeteDonneeBouee = function (id) {
+        connection.emit('requete-donnees-bouee', JSON.stringify(id));
     };
 
     function recevoirDonneeBouee(donnee) {
-        console.log("les donnee serait recu" + donnee);
+        console.log("donner de la bouee recu: " + donnee);
+       var bouee = JSON.parse(donnee);
+        console.log("la bouee recu: " + bouee);
+        setBouee(bouee);
     }
     this.retournerPosition = function () {
         return positionBouee;
     }
 
     init();
-    this.requeteDonneeBouee();
+    
 
 }
