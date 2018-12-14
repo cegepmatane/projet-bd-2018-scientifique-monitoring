@@ -82,7 +82,7 @@
   <div id="retour-accueil" style=""><a href="../index.html"><img src="img/retour.png"></a></div>
 
   <div>
-    <h2><span id="info-bouee">Information sur la bouée</span><span id="bouee" style="font-size:5px; "></span></h2>
+    <h2><span id="info-bouee">Information sur la bouée</span><span id="bouee" style="font-size:30px; "></span></h2>
   </div>
 
   <script>
@@ -91,7 +91,7 @@
     //console.log("info de la bouee" + bouee);
     var NomDeBouee = document.getElementById("bouee");
     //console.log("nom de la bouee: " + NomDeBouee);
-    NomDeBouee.innerHTML = boueeId;
+    //NomDeBouee.innerHTML = boueeId;
     connectionNode.requeteDonneeBouee(boueeId);
 
     function setBouee(boueeRecu)
