@@ -99,6 +99,6 @@ if(document.getElementById("legende-vents"))
 
 if(document.getElementById("bouee"))
 {
-  var innerBouee = "longitude: " + bouee.longitude + " latitude: " + bouee.latitude;
-  document.getElementById("bouee").innerHTML = innerBouee;
+  var innerBouee = "Latitude: " + bouee.longitude + " Longitude: " + bouee.latitude;
+  NomDeBouee.innerHTML = innerBouee;
 }
