@@ -1,14 +1,28 @@
 {
   "name": "app-electron",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "monitoring some boys",
+  "homepage": "http://www.sedricklev.com",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
-  "author": "",
+  "build": {
+    "appId": "electronapp",
+    "linux": {
+      "target": [
+        "deb"
+      ]
+    }
+  },
+  "author": {
+    "name": "yosiro",
+    "email": "sedrickidd@hotmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
-    "electron": "^3.0.0"
+    "electron": "^3.0.0",
+    "electron-builder": "^20.38.5"
   }
 }
